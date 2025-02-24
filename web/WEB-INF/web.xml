@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                             http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+    <!-- Welcome file list (this is where you specify the default page) -->
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file> <!-- Default login page -->
+    </welcome-file-list>
+
+    <!-- LoginServlet Configuration -->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern> <!-- URL for login functionality -->
+    </servlet-mapping>
+
+    <!-- RegisterServlet Configuration -->
+ <servlet>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>RegisterServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/RegisterServlet</url-pattern>
+</servlet-mapping>
+
+    <!-- HomeServlet Configuration (for displaying home page with topics) -->
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>HomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/home</url-pattern> <!-- URL for home page displaying all topics -->
+    </servlet-mapping>
+
+    <!-- TopicServlet Configuration (for creating new topics and displaying topics) -->
+    <servlet>
+        <servlet-name>TopicServlet</servlet-name>
+        <servlet-class>TopicServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TopicServlet</servlet-name>
+        <url-pattern>/topic</url-pattern> <!-- URL for handling topic-related actions -->
+    </servlet-mapping>
+
+    <!-- CommentServlet Configuration (for posting and managing comments) -->
+    <servlet>
+        <servlet-name>CommentServlet</servlet-name>
+        <servlet-class>CommentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CommentServlet</servlet-name>
+        <url-pattern>/comment</url-pattern> <!-- URL for handling comments -->
+    </servlet-mapping>
+
+    <!-- ReplyServlet Configuration (for posting and managing replies to comments) -->
+    <servlet>
+        <servlet-name>ReplyServlet</servlet-name>
+        <servlet-class>ReplyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReplyServlet</servlet-name>
+        <url-pattern>/reply</url-pattern> <!-- URL for handling replies -->
+    </servlet-mapping>
+
+    <!-- LogoffServlet Configuration (for logging out) -->
+    <servlet>
+        <servlet-name>LogoffServlet</servlet-name>
+        <servlet-class>LogoffServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoffServlet</servlet-name>
+        <url-pattern>/logout</url-pattern> <!-- URL for logging out -->
+    </servlet-mapping>
+
+    <!-- Servlet for handling password reset (if applicable) -->
+    <servlet>
+        <servlet-name>ResetPasswordServlet</servlet-name>
+        <servlet-class>ResetPasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ResetPasswordServlet</servlet-name>
+        <url-pattern>/resetPassword</url-pattern> <!-- URL for password reset -->
+    </servlet-mapping>
+
+</web-app>
