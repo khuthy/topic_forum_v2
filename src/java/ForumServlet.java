@@ -56,7 +56,9 @@ public class ForumServlet extends HttpServlet {
             ResultSet rs = stmt.executeQuery();
             
             if (rs.next()) {
+                HttpSession session = request.getSession();
                 response.getWriter().println("Login successful");
+                session.setAttribute("userId", rs.getInt("userId"));
                 response.sendRedirect("home.jsp");
             } else {
                 response.getWriter().println("Invalid credentials");
