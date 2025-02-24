@@ -1,27 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Forum</title>
+    <title>Forum Home</title>
 </head>
 <body>
-    <h1>Welcome to the Forum</h1>
+    <h2>Welcome to the Forum</h2>
+    <a href="create_topic.jsp">Create New Topic</a><br><br>
 
-    <!-- Link to create a new topic -->
-    <a href="createTopic.jsp">Create New Topic</a><br><br>
-
-    <!-- Displaying list of topics -->
-    <h2>All Topics</h2>
+    <h3>Topics:</h3>
     <ul>
-        <c:forEach var="topic" items="${topics}">
-            <li>
-                <a href="ViewTopicServlet?topicId=${topic.topic_id}">${topic.title}</a>
-                <p>${topic.description}</p>
-            </li>
-        </c:forEach>
+        <%
+            // Database connection to fetch topics
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:mysql://localhost:3306/topic_forum", "admin", "admin");
+                java.sql.Statement stmt = conn.createStatement();
+                java.sql.ResultSet rs = stmt.executeQuery("SELECT * FROM topics");
+
+                while (rs.next()) {
+                    out.println("<li><a href='view_topic.jsp?topicId=" + rs.getInt("id") + "'>" + rs.getString("title") + "</a></li>");
+                }
+
+                conn.close();
+            } catch (Exception e) {
+                out.println("Error: " + e.getMessage());
+            }
+        %>
     </ul>
+    <a href="logout.jsp">Logout</a>
 </body>
 </html>

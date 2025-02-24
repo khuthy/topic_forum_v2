@@ -2,92 +2,56 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-                             http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-         version="3.0">
+             http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
 
-    <!-- Welcome file list (this is where you specify the default page) -->
+    <!-- Display name of your application -->
+    <display-name>Forum Application</display-name>
+
+    <!-- Welcome file (if you want to set a default page) -->
     <welcome-file-list>
-        <welcome-file>login.jsp</welcome-file> <!-- Default login page -->
+        <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 
-    <!-- LoginServlet Configuration -->
+    <!-- Servlet definition -->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>LoginServlet</servlet-class>
     </servlet>
+
+    <!-- Servlet mapping -->
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/LoginServlet</url-pattern> <!-- URL for login functionality -->
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
-    <!-- RegisterServlet Configuration -->
- <servlet>
-    <servlet-name>RegisterServlet</servlet-name>
-    <servlet-class>RegisterServlet</servlet-class>
+    <!-- Another example of a servlet -->
+   <servlet>
+    <servlet-name>ForumServlet</servlet-name>
+    <servlet-class>ForumServlet</servlet-class>
 </servlet>
-<servlet-mapping>
-    <servlet-name>RegisterServlet</servlet-name>
-    <url-pattern>/RegisterServlet</url-pattern>
+
+  <servlet-mapping>
+    <servlet-name>ForumServlet</servlet-name>
+    <url-pattern>/ForumServlet</url-pattern>
 </servlet-mapping>
 
-    <!-- HomeServlet Configuration (for displaying home page with topics) -->
-    <servlet>
-        <servlet-name>HomeServlet</servlet-name>
-        <servlet-class>HomeServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>HomeServlet</servlet-name>
-        <url-pattern>/home</url-pattern> <!-- URL for home page displaying all topics -->
-    </servlet-mapping>
 
-    <!-- TopicServlet Configuration (for creating new topics and displaying topics) -->
-    <servlet>
-        <servlet-name>TopicServlet</servlet-name>
-        <servlet-class>TopicServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>TopicServlet</servlet-name>
-        <url-pattern>/topic</url-pattern> <!-- URL for handling topic-related actions -->
-    </servlet-mapping>
+    <!-- Context parameters (optional, for global settings) -->
+    <context-param>
+        <param-name>dbURL</param-name>
+        <param-value>jdbc:mysql://localhost:3306/topic_forum</param-value>
+    </context-param>
 
-    <!-- CommentServlet Configuration (for posting and managing comments) -->
-    <servlet>
-        <servlet-name>CommentServlet</servlet-name>
-        <servlet-class>CommentServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CommentServlet</servlet-name>
-        <url-pattern>/comment</url-pattern> <!-- URL for handling comments -->
-    </servlet-mapping>
+    <!-- Session configuration (optional) -->
+    <session-config>
+        <session-timeout>30</session-timeout> <!-- Time in minutes -->
+    </session-config>
 
-    <!-- ReplyServlet Configuration (for posting and managing replies to comments) -->
-    <servlet>
-        <servlet-name>ReplyServlet</servlet-name>
-        <servlet-class>ReplyServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ReplyServlet</servlet-name>
-        <url-pattern>/reply</url-pattern> <!-- URL for handling replies -->
-    </servlet-mapping>
-
-    <!-- LogoffServlet Configuration (for logging out) -->
-    <servlet>
-        <servlet-name>LogoffServlet</servlet-name>
-        <servlet-class>LogoffServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LogoffServlet</servlet-name>
-        <url-pattern>/logout</url-pattern> <!-- URL for logging out -->
-    </servlet-mapping>
-
-    <!-- Servlet for handling password reset (if applicable) -->
-    <servlet>
-        <servlet-name>ResetPasswordServlet</servlet-name>
-        <servlet-class>ResetPasswordServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ResetPasswordServlet</servlet-name>
-        <url-pattern>/resetPassword</url-pattern> <!-- URL for password reset -->
-    </servlet-mapping>
+    <!-- Error page (optional) -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error.jsp</location>
+    </error-page>
 
 </web-app>

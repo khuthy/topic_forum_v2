@@ -1,7 +1,7 @@
 public class Topic {
-    private int topicId;
-    private String title;
-    private String description;
+    private final int topicId;
+    private final String title;
+    private final String description;
 
     public Topic(int topicId, String title, String description) {
         this.topicId = topicId;
